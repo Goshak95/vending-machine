@@ -1,0 +1,19 @@
+@import "../../sccs/styles.scss";
+
+.machine {
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  &__window {
+    background-color: $window-main-color;
+    flex-basis: 80%;
+    padding: 30px;
+  }
+
+  &__control-panel {
+    background-color: $cp-main-color;
+    flex-basis: 20%;
+  }
+}

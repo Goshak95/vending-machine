@@ -4,7 +4,11 @@ import VendingContainer from "./containers/VendingContainer";
 
 class App extends React.Component {
   render() {
-    return <VendingContainer />;
+    return (
+      <div className="app">
+        <VendingContainer />
+      </div>
+    );
   }
 }
 

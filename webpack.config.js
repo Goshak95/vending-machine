@@ -117,7 +117,8 @@ module.exports = {
     alias: {
       "@components": path.resolve(__dirname, "src/components"),
       "@containers": path.resolve(__dirname, "src/containers"),
-      "@public": path.resolve(__dirname, "public")
+      "@public": path.resolve(__dirname, "public"),
+      "@": path.resolve(__dirname, "src")
     }
   },
   optimization: optimization(),
@@ -133,14 +134,6 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: jsLoaders()
-      },
-      {
-        test: /\.ts$/,
-        exclude: /node_modules/,
-        loader: {
-          loader: "babel-loader",
-          options: babelOptions("@babel/preset-typescript")
-        }
       },
       {
         test: /\.jsx$/,

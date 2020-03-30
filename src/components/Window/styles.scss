@@ -1,0 +1,14 @@
+@import "../../sccs/styles.scss";
+
+.window {
+  min-height: 100%;
+  border: 2px solid #999;
+  background-color: $window-inner-color;
+  &__cards-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 1rem;
+    margin-right: -3.3%;
+  }
+}
