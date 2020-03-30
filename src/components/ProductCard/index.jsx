@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./styles.scss";
 
-export const ProductCardComponent = ({ category, brand, quantity, price }) => {
+export const ProductCard = ({ category, brand, quantity, price }) => {
   return (
     <div className="card">
       <p className="card__brand">{brand}</p>
@@ -13,7 +13,7 @@ export const ProductCardComponent = ({ category, brand, quantity, price }) => {
   );
 };
 
-ProductCardComponent.propTypes = {
+ProductCard.propTypes = {
   category: PropTypes.string,
   brand: PropTypes.string,
   quantity: PropTypes.number,

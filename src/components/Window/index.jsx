@@ -1,13 +1,13 @@
 import React from "react";
 import "./styles.scss";
 import data from "./productsData.json";
-import { ProductCardComponent } from "../ProductCard";
+import { ProductCard } from "../ProductCard";
 console.log(data);
-export const WindowComponent = props => {
+export const Window = props => {
   const renderProducts = () => {
     return data.map(item => {
       return (
-        <ProductCardComponent
+        <ProductCard
           key={item.id}
           category={item.category}
           brand={item.brand}
