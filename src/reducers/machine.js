@@ -20,6 +20,9 @@ export function MachineReducer(state = initialState, action) {
       const newBalance = state.balance + action.payload;
       return { ...state, isLoading: false, error: null, balance: newBalance };
     }
+    case t.SHOW_ERROR: {
+      return { ...state, error: action.payload };
+    }
     default:
       return state;
   }

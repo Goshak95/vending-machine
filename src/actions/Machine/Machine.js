@@ -22,3 +22,10 @@ export function insertMoney(moneyAmount) {
     payload: moneyAmount
   };
 }
+
+export function showError(message) {
+  return {
+    type: t.SHOW_ERROR,
+    payload: message
+  };
+}
