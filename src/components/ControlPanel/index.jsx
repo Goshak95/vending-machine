@@ -29,9 +29,26 @@ export const ControlPanel = ({
     setMoneyValue("");
   };
 
+  const generateScreenMessage = () => {
+    let message = "";
+    switch (status) {
+      case "active":
+        message = `Balance: ${balance}`;
+        break;
+      case "error":
+        message = `Error: ${error}`;
+        break;
+      case "initial":
+      default:
+        message = "Insert money";
+    }
+
+    return isLoading ? "Loading..." : message;
+  };
+
   return (
     <div className="control-panel">
-      <ControlScreen message="Insert money" />
+      <ControlScreen message={generateScreenMessage()} />
       <div className="control-panel__group">
         <PanelInput
           name="price"
