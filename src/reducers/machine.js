@@ -40,12 +40,14 @@ export function MachineReducer(state = initialState, action) {
       const filteredProducts = state.products.filter(
         product => product.id !== action.payload.id
       );
+      const newBalance = +state.balance - +action.payload.balance;
       return {
         ...state,
         error: null,
         isLoading: false,
         status: "active",
-        products: filteredProducts
+        products: filteredProducts,
+        balance: newBalance
       };
     case t.BUY_PRODUCT_FAILURE:
       return {
