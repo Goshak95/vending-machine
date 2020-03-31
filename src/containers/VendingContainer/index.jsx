@@ -2,7 +2,7 @@ import React from "react";
 import "./styles.scss";
 import { connect } from "react-redux";
 import { Window } from "../../components/Window";
-import { ControlPanelComponent } from "../../components/ControlPanel";
+import { ControlPanel } from "../../components/ControlPanel";
 
 class VendingContainer extends React.Component {
   render() {
@@ -11,7 +11,9 @@ class VendingContainer extends React.Component {
         <div className="machine__window">
           <Window />
         </div>
-        <div className="machine__control-panel"></div>
+        <div className="machine__control-panel">
+          <ControlPanel />
+        </div>
       </div>
     );
   }

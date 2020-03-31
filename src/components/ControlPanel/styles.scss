@@ -1,0 +1,13 @@
+.control-panel {
+  min-height: 100%;
+  padding: 10%;
+  display: flex;
+  flex-flow: column;
+  &__group {
+    margin-top: 10px;
+  }
+  &__group > * {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}

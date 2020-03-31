@@ -1,0 +1,11 @@
+.keypad {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+  &__key {
+    display: flex;
+    justify-content: center;
+    width: 30%;
+    margin-bottom: 5%;
+  }
+}

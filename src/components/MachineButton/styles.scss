@@ -1,0 +1,11 @@
+@import "../../sccs/styles.scss";
+
+$padding: 0.25rem;
+.machine-button {
+  font-size: 1.25rem;
+  height: calc(3rem + $padding);
+  background-color: #1a1935;
+  color: $cp-text-color;
+  border: 1px solid $border-color;
+  padding: $padding;
+}

@@ -1,0 +1,8 @@
+@import "../../sccs/styles.scss";
+
+.panel-output {
+  height: 5rem;
+  background-color: $window-main-color;
+  border: 1px solid $border-color;
+  color: $cp-text-color;
+}
