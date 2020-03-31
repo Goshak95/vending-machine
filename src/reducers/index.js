@@ -1,2 +1,3 @@
 import { combineReducers } from "redux";
-export const rootReducer = combineReducers({});
+import { MachineReducer } from "./Machine";
+export const rootReducer = combineReducers({ machine: MachineReducer });
