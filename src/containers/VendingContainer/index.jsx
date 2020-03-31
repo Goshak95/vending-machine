@@ -4,7 +4,7 @@ import "./styles.scss";
 import { connect } from "react-redux";
 import { Window } from "../../components/Window";
 import { ControlPanel } from "../../components/ControlPanel";
-import { getProducts } from "../../actions/Machine/Machine";
+import { getProducts, insertMoney } from "../../actions/Machine/Machine";
 
 class VendingContainer extends React.Component {
   componentDidMount() {
@@ -19,7 +19,7 @@ class VendingContainer extends React.Component {
           <Window products={products} />
         </div>
         <div className="machine__control-panel">
-          <ControlPanel />
+          <ControlPanel insertMoney={this.props.insertMoney} />
         </div>
       </div>
     );
@@ -34,7 +34,8 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getProducts: () => dispatch(getProducts())
+    getProducts: () => dispatch(getProducts()),
+    insertMoney: moneyAmount => dispatch(insertMoney(moneyAmount))
   };
 };
 
@@ -54,7 +55,8 @@ VendingContainer.propTypes = {
     balance: PropTypes.number,
     state: PropTypes.string
   }),
-  getProducts: PropTypes.func
+  getProducts: PropTypes.func,
+  insertMoney: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(VendingContainer);

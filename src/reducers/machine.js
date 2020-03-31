@@ -16,6 +16,10 @@ export function MachineReducer(state = initialState, action) {
       return { ...state, products: action.payload, isLoading: false };
     case t.GET_PRODUCTS_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
+    case t.INSERT_MONEY: {
+      const newBalance = state.balance + action.payload;
+      return { ...state, isLoading: false, error: null, balance: newBalance };
+    }
     default:
       return state;
   }

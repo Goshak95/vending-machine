@@ -15,3 +15,10 @@ export function getProducts() {
       );
   };
 }
+
+export function insertMoney(moneyAmount) {
+  return {
+    type: t.INSERT_MONEY,
+    payload: moneyAmount
+  };
+}
