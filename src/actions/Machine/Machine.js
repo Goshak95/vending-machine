@@ -29,3 +29,20 @@ export function showError(message) {
     payload: message
   };
 }
+
+export function buyProduct(id) {
+  return dispatch => {
+    dispatch({
+      type: t.BUY_PRODUCT_REQUEST
+    });
+
+    return fetch(`${API_ROOT}/products/${id}`, {
+      method: "DELETE"
+    })
+      .then(response => response.json())
+      .then(data => dispatch({ type: t.BUY_PRODUCT_SUCCESS, payload: data }))
+      .catch(error =>
+        dispatch({ type: t.BUY_PRODUCT_FAILURE, payload: error.message })
+      );
+  };
+}

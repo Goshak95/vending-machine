@@ -7,7 +7,8 @@ import { ControlPanel } from "../../components/ControlPanel";
 import {
   getProducts,
   insertMoney,
-  showError
+  showError,
+  buyProduct
 } from "../../actions/Machine/Machine";
 
 class VendingContainer extends React.Component {
@@ -30,6 +31,7 @@ class VendingContainer extends React.Component {
             error={error}
             insertMoney={this.props.insertMoney}
             showError={this.props.showError}
+            buyProduct={this.props.buyProduct}
           />
         </div>
       </div>
@@ -47,7 +49,8 @@ const mapDispatchToProps = dispatch => {
   return {
     getProducts: () => dispatch(getProducts()),
     insertMoney: moneyAmount => dispatch(insertMoney(moneyAmount)),
-    showError: message => dispatch(showError(message))
+    showError: message => dispatch(showError(message)),
+    buyProduct: id => dispatch(buyProduct(id))
   };
 };
 
@@ -70,7 +73,8 @@ VendingContainer.propTypes = {
   }),
   getProducts: PropTypes.func,
   insertMoney: PropTypes.func,
-  showError: PropTypes.func
+  showError: PropTypes.func,
+  buyProduct: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(VendingContainer);
