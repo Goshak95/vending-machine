@@ -1,11 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./styles.scss";
-import data from "./productsData.json";
 import { ProductCard } from "../ProductCard";
-console.log(data);
-export const Window = props => {
+
+export const Window = ({ products }) => {
   const renderProducts = () => {
-    return data.map(item => {
+    return products.map(item => {
       return (
         <ProductCard
           key={item.id}
@@ -22,4 +22,16 @@ export const Window = props => {
       <div className="window__cards-wrapper">{renderProducts()}</div>
     </div>
   );
+};
+
+Window.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      category: PropTypes.string,
+      brand: PropTypes.string,
+      quantity: PropTypes.number,
+      price: PropTypes.number
+    })
+  )
 };
