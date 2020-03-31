@@ -16,7 +16,7 @@ class VendingContainer extends React.Component {
   }
 
   render() {
-    const { state, products, balance, isLoading, error } = this.props.machine;
+    const { status, products, balance, isLoading, error } = this.props.machine;
     return (
       <div className="machine">
         <div className="machine__window">
@@ -24,6 +24,10 @@ class VendingContainer extends React.Component {
         </div>
         <div className="machine__control-panel">
           <ControlPanel
+            status={status}
+            balance={balance}
+            isLoading={isLoading}
+            error={error}
             insertMoney={this.props.insertMoney}
             showError={this.props.showError}
           />
@@ -61,7 +65,7 @@ VendingContainer.propTypes = {
       })
     ),
     balance: PropTypes.number,
-    state: PropTypes.string
+    status: PropTypes.string
   }),
   getProducts: PropTypes.func,
   insertMoney: PropTypes.func,

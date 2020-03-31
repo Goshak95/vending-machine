@@ -5,7 +5,7 @@ export const initialState = {
   isLoading: false,
   products: [],
   balance: 0,
-  state: "initial"
+  status: "initial"
 };
 
 export function MachineReducer(state = initialState, action) {
@@ -17,11 +17,17 @@ export function MachineReducer(state = initialState, action) {
     case t.GET_PRODUCTS_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
     case t.INSERT_MONEY: {
-      const newBalance = state.balance + action.payload;
-      return { ...state, isLoading: false, error: null, balance: newBalance };
+      const newBalance = +state.balance + +action.payload;
+      return {
+        ...state,
+        isLoading: false,
+        error: null,
+        balance: newBalance,
+        status: "active"
+      };
     }
     case t.SHOW_ERROR: {
-      return { ...state, error: action.payload };
+      return { ...state, error: action.payload, status: "error" };
     }
     default:
       return state;
