@@ -61,7 +61,8 @@ VendingContainer.propTypes = {
         category: PropTypes.string,
         brand: PropTypes.string,
         quantity: PropTypes.number,
-        price: PropTypes.number
+        price: PropTypes.number,
+        catNumber: PropTypes.number
       })
     ),
     balance: PropTypes.number,

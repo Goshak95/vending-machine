@@ -9,14 +9,17 @@
   position: relative;
   padding: 1rem 1.5rem;
 
-  &__quantity {
-    position: absolute;
-    top: 10%;
-    font-size: 24px;
-    left: 90%;
-    font-weight: 700;
-  }
+  display: flex;
+  justify-content: space-between;
 
+  &__left {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+  }
+  &__number {
+    text-align: right;
+  }
   &__brand {
     font-size: 22px;
   }

@@ -4,6 +4,7 @@ import "./styles.scss";
 import { ProductCard } from "../ProductCard";
 
 export const Window = ({ products }) => {
+  console.log(products);
   const renderProducts = () => {
     return products.map(item => {
       return (
@@ -13,6 +14,7 @@ export const Window = ({ products }) => {
           brand={item.brand}
           price={item.price}
           quantity={item.quantity}
+          catNumber={item.catNumber}
         />
       );
     });
@@ -31,7 +33,8 @@ Window.propTypes = {
       category: PropTypes.string,
       brand: PropTypes.string,
       quantity: PropTypes.number,
-      price: PropTypes.number
+      price: PropTypes.number,
+      catNumber: PropTypes.number
     })
   )
 };
