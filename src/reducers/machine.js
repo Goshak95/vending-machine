@@ -36,11 +36,31 @@ export function MachineReducer(state = initialState, action) {
     }
     case t.BUY_PRODUCT_REQUEST:
       return { ...state, isLoading: true, error: null };
-    case t.BUY_PRODUCTS_SUCCESS:
+    case t.BUY_PRODUCT_SUCCESS: {
+      const updatedProducts = state.products.map(product => {
+        if (product.id === action.payload.id) {
+          return action.payload;
+        } else {
+          return product;
+        }
+      });
+      const newBalance = +state.balance - +action.payload.price;
+      return {
+        ...state,
+        products: updatedProducts,
+        error: null,
+        isLoading: false,
+        status: "active",
+        balance: newBalance
+      };
+    }
+    case t.BUY_LAST_PRODUCT_REQUEST:
+      return { ...state, isLoading: true, error: null };
+    case t.BUY_LAST_PRODUCTS_SUCCESS: {
       const filteredProducts = state.products.filter(
         product => product.id !== action.payload.id
       );
-      const newBalance = +state.balance - +action.payload.balance;
+      const newBalance = +state.balance - +action.payload.price;
       return {
         ...state,
         error: null,
@@ -49,6 +69,7 @@ export function MachineReducer(state = initialState, action) {
         products: filteredProducts,
         balance: newBalance
       };
+    }
     case t.BUY_PRODUCT_FAILURE:
       return {
         ...state,

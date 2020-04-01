@@ -30,19 +30,44 @@ export function showError(message) {
   };
 }
 
-export function buyProduct(id) {
-  return dispatch => {
-    dispatch({
-      type: t.BUY_PRODUCT_REQUEST
-    });
+export function buyProduct(product) {
+  if (product.quantity == 1) {
+    return dispatch => {
+      dispatch({
+        type: t.BUY_LAST_PRODUCT_REQUEST
+      });
 
-    return fetch(`${API_ROOT}/products/${id}`, {
-      method: "DELETE"
-    })
-      .then(response => response.json())
-      .then(data => dispatch({ type: t.BUY_PRODUCT_SUCCESS, payload: data }))
-      .catch(error =>
-        dispatch({ type: t.BUY_PRODUCT_FAILURE, payload: error.message })
-      );
-  };
+      return fetch(`${API_ROOT}/products/${product.id}`, {
+        method: "DELETE"
+      })
+        .then(response => response.json())
+        .then(data =>
+          dispatch({ type: t.BUY_LAST_PRODUCT_SUCCESS, payload: data })
+        )
+        .catch(error =>
+          dispatch({ type: t.BUY_LAST_PRODUCT_FAILURE, payload: error.message })
+        );
+    };
+  } else {
+    product.quantity -= 1;
+
+    return dispatch => {
+      dispatch({
+        type: t.BUY_PRODUCT_REQUEST
+      });
+
+      return fetch(`${API_ROOT}/products/${product.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8"
+        },
+        body: JSON.stringify(product)
+      })
+        .then(response => response.json())
+        .then(data => dispatch({ type: t.BUY_PRODUCT_SUCCESS, payload: data }))
+        .catch(error =>
+          dispatch({ type: t.BUY_PRODUCT_FAILURE, payload: error.message })
+        );
+    };
+  }
 }
