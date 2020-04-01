@@ -25,6 +25,7 @@ class VendingContainer extends React.Component {
         </div>
         <div className="machine__control-panel">
           <ControlPanel
+            products={products}
             status={status}
             balance={balance}
             isLoading={isLoading}
@@ -50,7 +51,7 @@ const mapDispatchToProps = dispatch => {
     getProducts: () => dispatch(getProducts()),
     insertMoney: moneyAmount => dispatch(insertMoney(moneyAmount)),
     showError: message => dispatch(showError(message)),
-    buyProduct: id => dispatch(buyProduct(id))
+    buyProduct: product => dispatch(buyProduct(product))
   };
 };
 

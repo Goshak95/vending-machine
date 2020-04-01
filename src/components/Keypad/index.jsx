@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import "./styles.scss";
 import { Key } from "../Key";
 
-export const Keypad = ({ data }) => {
+export const Keypad = ({ data, keyHandler }) => {
   return (
     <div className="keypad">
       {data.map(item => {
         return (
           <div key={item} className="keypad__key">
-            <Key value={String(item)} />
+            <Key value={String(item)} keyHandler={keyHandler} />
           </div>
         );
       })}
@@ -18,5 +18,6 @@ export const Keypad = ({ data }) => {
 };
 
 Keypad.propTypes = {
-  data: PropTypes.array.isRequired
+  data: PropTypes.array.isRequired,
+  keyHandler: PropTypes.func
 };
