@@ -71,3 +71,9 @@ export function buyProduct(product) {
     };
   }
 }
+
+export function giveChange() {
+  return {
+    type: t.GIVE_CHANGE
+  };
+}

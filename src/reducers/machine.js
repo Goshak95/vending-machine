@@ -77,6 +77,15 @@ export function MachineReducer(state = initialState, action) {
         isLoading: false,
         status: "error"
       };
+
+    case t.GIVE_CHANGE:
+      return {
+        ...state,
+        isLoading: false,
+        error: null,
+        balance: 0,
+        status: "initial"
+      };
     default:
       return state;
   }
