@@ -8,4 +8,17 @@
   border-radius: 50%;
   font-size: 28px;
   outline: none;
+  box-shadow: 0 0 5px 3px #000;
+  cursor: pointer;
+  &:active {
+    box-shadow: inset 0 0 10px 0px #000;
+  }
+}
+
+@media (max-width: 457px) {
+  .key {
+    width: 100%;
+    height: 100%;
+    font-size: 22px;
+  }
 }

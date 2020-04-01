@@ -11,3 +11,9 @@
   color: $screen-text-color;
   background-color: $screen-bg-color;
 }
+
+@media (max-width: 992px) {
+  .control-screen {
+    font-size: 0.75rem;
+  }
+}
