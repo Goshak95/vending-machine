@@ -7,7 +7,7 @@ import { Keypad } from "../Keypad";
 import { MachineButton } from "../MachineButton";
 import { PanelNote } from "../PanelNote";
 import { PanelOutput } from "../PanelOutput";
-import { availableBanknotes } from "../../constants/defaults";
+import { availableBanknotes, availableCoins } from "../../constants/defaults";
 
 export const ControlPanel = ({
   products,
@@ -17,10 +17,12 @@ export const ControlPanel = ({
   error,
   insertMoney,
   showError,
-  buyProduct
+  buyProduct,
+  giveChange
 }) => {
   const [moneyValue, setMoneyValue] = useState("");
   const [productNumber, setProductNumber] = useState("");
+  const [changeMessage, setChangeMessage] = useState("");
 
   const insertMoneyHandler = () => {
     console.log("test");
@@ -71,6 +73,42 @@ export const ControlPanel = ({
     setProductNumber("");
   };
 
+  const generateChangeMessage = () => {
+    console.log("test");
+    if (balance === 0) {
+      showError("Can't give change. Balance is 0.");
+      return;
+    }
+
+    let balanceValue = balance;
+    const coinsAmount = [];
+    availableCoins.sort((a, b) => b - a);
+    availableCoins.forEach(coin => {
+      let amount = 0;
+      while (balanceValue !== 0) {
+        if (balanceValue < coin) {
+          break;
+        }
+        balanceValue -= coin;
+        amount += 1;
+      }
+      coinsAmount.push(amount);
+    });
+    let message = availableCoins.reduce((message, coin, index) => {
+      if (coinsAmount[index] === 0) {
+        return message;
+      }
+      message += ` ${coinsAmount[index]} ${coin}₽ coins`;
+      return message;
+    }, "Your change:");
+
+    setChangeMessage(message);
+    giveChange();
+    setTimeout(() => {
+      setChangeMessage("");
+    }, 10000);
+  };
+
   return (
     <div className="control-panel">
       <ControlScreen message={generateScreenMessage()} />
@@ -91,8 +129,8 @@ export const ControlPanel = ({
       <MachineButton text="Confirm product number" action={buyProductHandler} />
       <PanelNote title="Don't forget to take your change:" />
       <div className="control-panel__group">
-        <PanelOutput />
-        <MachineButton text="Take change" />
+        <PanelOutput message={changeMessage} />
+        <MachineButton text="Take change" action={generateChangeMessage} />
       </div>
     </div>
   );
@@ -115,5 +153,6 @@ ControlPanel.propTypes = {
   error: PropTypes.string,
   insertMoney: PropTypes.func,
   showError: PropTypes.func,
-  buyProduct: PropTypes.func
+  buyProduct: PropTypes.func,
+  giveChange: PropTypes.func
 };

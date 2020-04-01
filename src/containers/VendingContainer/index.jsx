@@ -8,7 +8,8 @@ import {
   getProducts,
   insertMoney,
   showError,
-  buyProduct
+  buyProduct,
+  giveChange
 } from "../../actions/Machine/Machine";
 
 class VendingContainer extends React.Component {
@@ -33,6 +34,7 @@ class VendingContainer extends React.Component {
             insertMoney={this.props.insertMoney}
             showError={this.props.showError}
             buyProduct={this.props.buyProduct}
+            giveChange={this.props.giveChange}
           />
         </div>
       </div>
@@ -51,7 +53,8 @@ const mapDispatchToProps = dispatch => {
     getProducts: () => dispatch(getProducts()),
     insertMoney: moneyAmount => dispatch(insertMoney(moneyAmount)),
     showError: message => dispatch(showError(message)),
-    buyProduct: product => dispatch(buyProduct(product))
+    buyProduct: product => dispatch(buyProduct(product)),
+    giveChange: () => dispatch(giveChange())
   };
 };
 
@@ -75,7 +78,8 @@ VendingContainer.propTypes = {
   getProducts: PropTypes.func,
   insertMoney: PropTypes.func,
   showError: PropTypes.func,
-  buyProduct: PropTypes.func
+  buyProduct: PropTypes.func,
+  giveChange: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(VendingContainer);

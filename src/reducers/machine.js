@@ -56,7 +56,7 @@ export function MachineReducer(state = initialState, action) {
     }
     case t.BUY_LAST_PRODUCT_REQUEST:
       return { ...state, isLoading: true, error: null };
-    case t.BUY_LAST_PRODUCTS_SUCCESS: {
+    case t.BUY_LAST_PRODUCT_SUCCESS: {
       const filteredProducts = state.products.filter(
         product => product.id !== action.payload.id
       );
